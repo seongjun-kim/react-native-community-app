@@ -23,17 +23,16 @@ const Loading = () => {
       toValue: 1,
       duration: 5000,
     }).start();
+    setTimeout(() => {
+      const intervalObj = setInterval(() => {
+        setProgress(t);
+        t += 0.1;
+        if (progress >= 1) {
+          clearInterval(intervalObj);
+        }
+      }, 200);
+    }, 2000);
   }, []);
-
-  setTimeout(() => {
-    const intervalObj = setInterval(() => {
-      setProgress(t);
-      t += 0.1;
-      if (progress >= 1) {
-        clearInterval(intervalObj);
-      }
-    }, 200);
-  }, 2000);
 
   return (
     <View style={styles.container}>
