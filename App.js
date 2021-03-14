@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar } from "react-native";
 import Loading from "./components/contents/Loading";
 import Main from "./components/contents/Main";
@@ -6,10 +6,12 @@ import Main from "./components/contents/Main";
 const App = () => {
   const [loadingState, setLoadingState] = useState(false);
 
-  setTimeout(() => {
-    console.log("change loading state!");
-    setLoadingState(true);
-  }, 5000);
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("change loading state!");
+      setLoadingState(true);
+    }, 5000);
+  }, []);
 
   return (
     <>
