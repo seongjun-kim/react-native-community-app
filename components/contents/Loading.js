@@ -22,6 +22,7 @@ const Loading = () => {
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 5000,
+      useNativeDriver: true,
     }).start();
     setTimeout(() => {
       const intervalObj = setInterval(() => {
