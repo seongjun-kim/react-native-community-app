@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
   },
 });
 
-let t = 0.1;
 const Loading = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [progress, setProgress] = useState(0);
+  let completed = 0;
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -24,15 +24,6 @@ const Loading = () => {
       duration: 5000,
       useNativeDriver: true,
     }).start();
-    setTimeout(() => {
-      const intervalObj = setInterval(() => {
-        setProgress(t);
-        t += 0.1;
-        if (progress >= 1) {
-          clearInterval(intervalObj);
-        }
-      }, 200);
-    }, 2000);
   }, []);
 
   return (
@@ -50,7 +41,15 @@ const Loading = () => {
             opacity: fadeAnim,
           },
         ]}
-        onLoad={this.onImageLoad}
+        onLoad={() => {
+          const intervalObj = setInterval(() => {
+            completed += 0.1;
+            setProgress(completed);
+            if (completed >= 1) {
+              clearInterval(intervalObj);
+            }
+          }, 100);
+        }}
       />
       <Text
         style={{
